@@ -7,7 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using Gavri_Andreea_Lab2.Data;
+using LibraryModels.Data;
+using LibraryModel.Data;
 
 namespace Gavri_Andreea_Lab2
 {
