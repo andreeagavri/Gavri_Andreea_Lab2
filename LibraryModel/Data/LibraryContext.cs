@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Gavri_Andreea_Lab2.Models;
+using LibraryModel.Models;
 
-namespace Gavri_Andreea_Lab2.Data
+namespace LibraryModel.Data
 {
     public class LibraryContext : DbContext
     {

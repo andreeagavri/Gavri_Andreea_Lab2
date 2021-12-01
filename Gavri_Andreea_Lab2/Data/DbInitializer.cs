@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Gavri_Andreea_Lab2.Models;
+using LibraryModel.Models;
+using LibraryModel.Data;
 
-namespace Gavri_Andreea_Lab2.Data
+namespace LibraryModels.Data
 {
     public class DbInitializer
     {
