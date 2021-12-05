@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using LibraryModel.Data;
 
+
 namespace LibraryWebAPI
 {
     public class Startup
@@ -30,8 +31,7 @@ namespace LibraryWebAPI
         {
 
             services.AddControllers();
-            services.AddDbContext<LibraryContext>(options =>
-        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<LibraryContext>(options =>        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LibraryWebAPI", Version = "v1" });

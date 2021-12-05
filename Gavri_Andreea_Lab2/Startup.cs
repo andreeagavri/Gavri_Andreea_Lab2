@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using LibraryModel.Data;
 using Microsoft.EntityFrameworkCore;
+using Gavri_Andreea_Lab2.Hubs;
+using Microsoft.AspNetCore.Identity;
 
 namespace Gavri_Andreea_Lab2
 {
@@ -27,6 +29,14 @@ namespace Gavri_Andreea_Lab2
         {
             services.AddControllersWithViews();
             services.AddDbContext<LibraryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSignalR();
+            services.Configure<IdentityOptions>(options => {
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); options.Lockout.MaxFailedAccessAttempts = 3; options.Lockout.AllowedForNewUsers = true;
+            });
+            services.Configure<IdentityOptions>(options => {options.Password.RequireDigit = true;options.Password.RequireLowercase = true;  options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 8;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +56,7 @@ namespace Gavri_Andreea_Lab2
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -54,6 +64,8 @@ namespace Gavri_Andreea_Lab2
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<ChatHub>("/chathub");
+                endpoints.MapRazorPages();
             });
         }
     }
